@@ -100,6 +100,46 @@ nav a:hover {
 }
 
 /* =========================
+   Hamburger Menu Button
+   ========================= */
+/* Hide hamburger by default (desktop) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+}
+
+/* The three horizontal lines */
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+/* Animated hamburger to X when active */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* =========================
    Main Content
    ========================= */
 /* Style main semantic tag directly */
@@ -380,19 +420,54 @@ footer a:hover {
         font-size: 1.5rem;     /* Smaller on mobile */
     }
 
-    nav {
-        font-size: 0.9rem;
+    /* Show hamburger menu button on mobile */
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
-    /* Stack navigation vertically on mobile */
+    /* Position nav for mobile */
+    nav {
+        font-size: 0.9rem;
+        position: relative;
+        padding: 1rem;
+    }
+
+    /* Hide navigation menu by default on mobile */
     nav ul {
-        flex-direction: column;  /* Change from row to column */
-        align-items: center;     /* Center the stacked items */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #3d1461;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Show menu when active class is added */
+    nav ul.active {
+        max-height: 500px;
+        padding: 1rem 0;
+    }
+
+    nav li {
+        width: 100%;
+        text-align: center;
     }
 
     nav a {
-        display: block;          /* Full width for easier tapping */
+        display: block;
         width: 100%;
+        padding: 0.75rem 1rem;
         text-align: center;
     }
 

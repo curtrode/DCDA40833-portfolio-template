@@ -11,7 +11,14 @@
 <body>
     <!-- Navigation: Links to all portfolio pages -->
     <nav>
-        <ul>
+        <!-- Hamburger menu button (visible only on mobile) -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul id="nav-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="lab02.html">AI Evaluation</a></li>
             <li><a href="lab03.html">Viz Critique</a></li>
@@ -114,5 +121,27 @@
         <p><a href="https://github.com/yourusername/your-repo-name">View Repository on GitHub</a></p>
         <p>&copy; 2026 Your Name | DCDA 40833 | TCU</p>
     </footer>
+
+    <!-- Hamburger Menu Toggle Script -->
+    <script>
+        // Get references to the hamburger button and nav menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        // Toggle menu open/closed when hamburger is clicked
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a nav link is clicked (better UX on mobile)
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
