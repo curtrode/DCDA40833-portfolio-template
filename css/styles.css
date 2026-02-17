@@ -375,25 +375,92 @@ footer a:hover {
 /* =========================
    Responsive Design (Mobile)
    ========================= */
+
+/* Hamburger menu button - hidden by default on desktop */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger animation when menu is open */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 @media (max-width: 768px) {
     header h1 {
         font-size: 1.5rem;     /* Smaller on mobile */
     }
 
+    /* Show hamburger button on mobile */
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Make nav position relative for positioning hamburger */
     nav {
+        position: relative;
         font-size: 0.9rem;
     }
 
-    /* Stack navigation vertically on mobile */
+    /* Hide navigation by default on mobile */
     nav ul {
-        flex-direction: column;  /* Change from row to column */
-        align-items: center;     /* Center the stacked items */
+        position: fixed;
+        top: 0;
+        right: -100%;           /* Start off-screen */
+        width: 250px;
+        height: 100vh;
+        background-color: #3d1461;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 4rem 0 2rem 0;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        z-index: 99;
+    }
+
+    /* Show menu when active */
+    nav ul.active {
+        right: 0;               /* Slide in from right */
+    }
+
+    nav li {
+        width: 100%;
+        margin: 0;
     }
 
     nav a {
-        display: block;          /* Full width for easier tapping */
+        display: block;
         width: 100%;
-        text-align: center;
+        text-align: left;
+        padding: 1rem 1.5rem;
+        border-radius: 0;
     }
 
     main section {
